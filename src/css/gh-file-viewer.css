@@ -1,0 +1,105 @@
+body.gh-file-viewer div#files {
+  display: flex;
+}
+
+body.gh-file-viewer .container {
+  width: auto !important;
+  padding: 0 20px;
+}
+
+.file-nav-container {
+  flex: 1;
+  min-width: 400px;
+  margin-right: 20px;
+  background-color: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 2px;
+}
+
+.js-diff-progressive-container {
+  flex: 1 1 100%;
+}
+
+.file-nav-tree {
+  padding: 10px 0;
+}
+
+.file-nav-tree ul {
+  padding-left: 10px;
+}
+
+.file-nav-tree li {
+  list-style: none;
+}
+
+.file-tree__wrapper ul {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.1s ease;
+}
+
+.file-tree__item {
+  cursor: pointer;
+  word-break: break-all;
+}
+
+.file-tree__folder.expanded > ul {
+  max-height: 2000px;
+  transition: max-height 0.2s ease-in;
+}
+
+.file-tree__label {
+  display: block;
+  padding: 3px;
+}
+
+.file-tree__label:hover {
+  background-color: #f7f7f7;
+}
+
+.file-tree__label.active {
+  background-color: #f3f8ff;
+  font-weight: bold;
+}
+
+.file-tree__label--folder {
+  font-weight: 500;
+}
+
+.file-tree__label--folder--icon {
+  color: #80a9b3;
+}
+
+.file-tree__label--folder.file-tree__label--folder--spec,
+.file-tree__label--folder--icon--spec {
+  color: #599659;
+}
+
+.file-tree__folder--spec .file-tree__label--folder,
+.file-tree__folder--spec .file-tree__label--folder--icon {
+  color: #599659;
+}
+
+.file-tree__label {
+  color: #717171
+}
+
+.file-tree__label--icon {
+  margin-bottom: -1px;
+}
+
+.file-tree__label--icon--rb {
+  color: #d48484
+}
+
+.file-tree__label--icon--erb {
+  color: #a470bd
+}
+
+.file-tree__label--icon--js {
+  color: #70bd74
+}
+
+.file-tree__label--icon--scss {
+  color: #709fbd
+}
