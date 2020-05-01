@@ -1,6 +1,6 @@
 {
   "name": "GH-FileViewer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "manifest_version": 2,
   "description": "Adds a file viewer to github diffs and commits",
   "homepage_url": "https://github.com/derek-meulmeester/gh-file-viewer",
