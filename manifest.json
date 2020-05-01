@@ -5,10 +5,10 @@
   "description": "Adds a file viewer to github diffs and commits",
   "homepage_url": "https://github.com/derek-meulmeester/gh-file-viewer",
   "icons": {
-    "16": "icon16.png",
-    "19": "icon19.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "16": "icons/icon16.png",
+    "19": "icons/icon19.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "default_locale": "en",
   "content_scripts": [{
