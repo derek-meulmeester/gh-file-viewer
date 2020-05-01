@@ -1,8 +1,8 @@
 {
-  "name": "GH-FileViewer",
-  "version": "0.0.4",
+  "name": "Github-FileViewer",
+  "version": "0.0.5",
   "manifest_version": 2,
-  "description": "Adds a file viewer to github diffs and commits",
+  "description": "Adds a file viewer to Github pull request and commit diffs.",
   "homepage_url": "https://github.com/derek-meulmeester/gh-file-viewer",
   "icons": {
     "16": "icons/icon16.png",
