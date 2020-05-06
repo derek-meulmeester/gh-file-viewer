@@ -1,4 +1,14 @@
 chrome.extension.sendMessage({}, function() {
+  const Selectors = {
+    progressiveContainer: 'div.js-diff-progressive-container',
+    fileNavContainer: 'div.file-nav-container',
+    fileNavTree: 'div.file-nav-tree',
+    fileContainer: 'div#files',
+    file: 'div.js-file.js-targetable-elements',
+    fileHeader: 'div.file-header',
+    activeFileTreeLabel: '.file-tree__label--file.active',
+  };
+
   const readyStateCheckInterval = setInterval(function() {
     if (document.readyState === 'complete') {
       clearInterval(readyStateCheckInterval);
@@ -11,7 +21,7 @@ chrome.extension.sendMessage({}, function() {
         let fileDetails = getFileDetails();
         let files = to_a(fileDetails);
 
-        fileCount = document.querySelectorAll('div.file').length;
+        fileCount = document.querySelectorAll(Selectors.file).length;
         firstFileFound = false;
         setupFileNavContainer();
         setupFileNavTree(files);
@@ -23,7 +33,7 @@ chrome.extension.sendMessage({}, function() {
       }
 
       function mergeProgressiveContainers() {
-        const containers = document.querySelectorAll('div.js-diff-progressive-container');
+        const containers = document.querySelectorAll(Selectors.progressiveContainer);
 
         if (containers.length > 1) {
           const parentContainer = containers[0];
@@ -41,14 +51,14 @@ chrome.extension.sendMessage({}, function() {
       }
 
       function selectFile(containerId) {
-        let files = document.querySelectorAll('div.file');
+        let files = document.querySelectorAll(Selectors.file);
         for (let file of files) {
           file.style.display = file.id === containerId ? 'block' : 'none';
         }
       }
 
       function setupClickHandler() {
-        let fileNavTree = document.querySelector('div.file-nav-tree');
+        let fileNavTree = document.querySelector(Selectors.fileNavTree);
         if (fileNavTree) {
           fileNavTree.addEventListener('click', (event) => {
 
@@ -88,14 +98,14 @@ chrome.extension.sendMessage({}, function() {
       }
 
       function removeAllFileSelections() {
-        let activeFiles = document.querySelectorAll('.file-tree__label--file.active');
+        let activeFiles = document.querySelectorAll(Selectors.activeFileTreeLabel);
         for (let activeFile of activeFiles) {
           activeFile.classList.remove('active');
         }
       }
 
       function setupFileNavTree(files) {
-        let fileNavTree = document.querySelector('div.file-nav-tree');
+        let fileNavTree = document.querySelector(Selectors.fileNavTree);
         if (fileNavTree) {
           fileNavTree.innerHTML =
             `<ul class="file-tree__wrapper">
@@ -216,7 +226,7 @@ chrome.extension.sendMessage({}, function() {
 
       function setupFileNavContainer() {
         removeFileViewer();
-        let fileContainer = document.querySelector('div#files');
+        let fileContainer = document.querySelector(Selectors.fileContainer);
 
         if (fileContainer) {
           fileContainer.insertAdjacentHTML('afterbegin',
@@ -261,11 +271,11 @@ chrome.extension.sendMessage({}, function() {
 
       function getFileDetails() {
         let fileDetails = {};
-        let files = document.querySelectorAll('div.file');
+        let files = document.querySelectorAll(Selectors.file);
 
         for (let file of files) {
           let isRename = false;
-          const header = file.querySelector('div.file-header');
+          const header = file.querySelector(Selectors.fileHeader);
           let path = header.getAttribute('data-path');
 
           if (path) {
@@ -309,11 +319,11 @@ chrome.extension.sendMessage({}, function() {
       }
 
       function removeFileViewer() {
-        [...document.querySelectorAll('div.file-nav-container')].map(viewer => viewer.remove());
+        [...document.querySelectorAll(Selectors.fileNavContainer)].map(viewer => viewer.remove());
       }
 
       function update() {
-        if (document.querySelector('div#files')) {
+        if (document.querySelector(Selectors.fileContainer)) {
           run();
         } else {
           cleanup();
@@ -325,7 +335,7 @@ chrome.extension.sendMessage({}, function() {
         if (currentPage !== window.location.href) {
             currentPage = window.location.href;
             setTimeout(update, 500);
-        } else if (fileCount !== document.querySelectorAll('div.file').length) {
+        } else if (fileCount !== document.querySelectorAll(Selectors.file).length) {
           update();
         }
       }, 500);
